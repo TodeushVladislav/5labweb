@@ -170,55 +170,77 @@ localStorage броузера
  */
 
 
-function createForm(block) {
-	if (block.querySelector("form__select")) return;
+function createForm(block, storageKey) {
+    if (block.querySelector(".form-select-wrapper")) return;
 
-	const form = document.createElement("form__select");
-	form.innerHTML = `
+    const formWrapper = document.createElement("div");
+    formWrapper.className = "form-select-wrapper";
+    formWrapper.style.margin = "15px 0";
+    formWrapper.style.padding = "10px";
+    formWrapper.style.border = "1px dashed #ccc";
+
+    formWrapper.innerHTML = `
         <input type="text" placeholder="Введіть пункт списку" class="listInput">
         <button type="button" class="addItem">Додати пункт</button>
         <button type="button" class="saveList">Зберегти список</button>
+        <ol class="temp-list"></ol>
     `;
 
-	const listContainer = document.createElement("ol"); // контейнер для списку
-	form.appendChild(listContainer);
+    const listContainer = formWrapper.querySelector(".temp-list");
 
-	form.querySelector(".addItem").addEventListener("click", () => {
-		const input = form.querySelector(".listInput");
-		if (input.value.trim() !== "") {
-			const li = document.createElement("li");
-			li.textContent = input.value.trim();
-			listContainer.appendChild(li);
-			input.value = "";
-		}
-	});
+    formWrapper.querySelector(".addItem").addEventListener("click", (e) => {
+        e.stopPropagation(); 
+        const input = formWrapper.querySelector(".listInput");
+        if (input.value.trim() !== "") {
+            const li = document.createElement("li");
+            li.textContent = input.value.trim();
+            listContainer.appendChild(li);
+            input.value = "";
+        }
+    });
 
-	form.querySelector(".saveList").addEventListener("click", () => {
-		const items = [...listContainer.querySelectorAll("li")].map(li => li.textContent);
-		if (items.length > 0) {
-			localStorage.setItem(block.id, JSON.stringify(items));
+    formWrapper.querySelector(".saveList").addEventListener("click", (e) => {
+        e.stopPropagation();
+        const items = [...listContainer.querySelectorAll("li")].map(li => li.textContent);
+        
+        if (items.length > 0) {
+            localStorage.setItem(storageKey, JSON.stringify(items));
 
-			const finalList = document.createElement("ol");
-			items.forEach(text => {
-				const li = document.createElement("li");
-				li.textContent = text;
-				finalList.appendChild(li);
-			});
-			block.appendChild(finalList);
+            const finalList = document.createElement("ol");
+            items.forEach(text => {
+                const li = document.createElement("li");
+                li.textContent = text;
+                finalList.appendChild(li);
+            });
+            block.appendChild(finalList);
 
-			form.remove();
-		}
-	});
+            formWrapper.remove();
+        }
+    });
 
-	block.appendChild(form);
+    block.appendChild(formWrapper);
 }
 
-document.querySelectorAll(".section").forEach(block => {
-	block.addEventListener("click", () => {
-		createForm(block);
-	});
+
+document.addEventListener('selectionchange', () => {
+    const selection = window.getSelection();
+    
+    if (selection.toString().length > 0) {
+        let node = selection.anchorNode;
+        while (node && node.nodeType !== 1) { 
+            node = node.parentElement; 
+        }
+        const sectionBlock = node ? node.closest('.section') : null;
+        if (sectionBlock) {
+            const allSections = document.querySelectorAll('.section');
+            let index = -1;
+            allSections.forEach((el, i) => {
+                if (el === sectionBlock) index = i;
+            });
+
+            if (index !== -1) {
+                createForm(sectionBlock, `list_data_${index}`);
+            }
+        }
+    }
 });
-
-
-
-
