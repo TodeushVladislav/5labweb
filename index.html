@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<title>Тодеуш_3лабка - Адаптована для смартфону</title>
+		<meta charset="utf-8">
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/style-grid.css">
+	</head>
+	<body>
+		<div class = "container">
+			<div class = "first section"><h1>Пантеон Шахових Геніїв</h1></div>
+			<div class = "second section">
+				<ul>
+				  <li><a href="index.html">For phone</a></li>
+				  <li><a href="email.html">For email</a></li>
+				</ul>
+			</div>
+			<div class = "third section">"Кожен шаховий майстер колись був початківцем."
+			©Ірвінг Чернев</div>
+			<div class = "fourth section"><img src="img/ronaldo-messi.jpg" alt="Шахи" class = "photo"></div>
+			<div class = "fifth section">
+				Шахи — це не просто змагання на дошці, а відображення способу мислення свого часу. Кожен чемпіон світу вніс щось нове, розширюючи межі можливого в грі, де логіка зустрічається з творчістю.
+				Основні етапи розвитку:
+				<ol>
+					<li>Період романтизму — час блискучих атак і натхненних комбінацій.</li>
+					<li>Від Стейніца до Ботвинника — народження позиційного підходу і професійних шахів.</li>
+					<li>Період радянської гегемонії — період беззаперечного лідерства срср у шахах.</li>
+					<li>Сучасність — епоха універсалізму і співіснування людини з комп'ютерами.</li>
+				</ol>
+
+				<div class="form">
+					<button class="button blocks"  onclick="exchangeBlocks3and6();">Змінити порядок 3 та 6 блоків</button>
+					<span class="text__section">Сторона паралелограма:</span>
+					<span class="text__side"></span>
+					<br><span class="text__section">Прилегла висота паралелограма:</span>
+					<span class="text__height"></span>
+					<button class="button square" onclick="calculateSquare();">Обчислити площу паралелограма</button>
+					<br><span class="text__section">Площа паралелограма:</span>
+					<span class="text__square"></span>
+					<br><input type="number" id="digitInput">
+					<button class="button maxDigit" onclick="findMaxDigit();">Обчислити максимальну цифру</button>
+					<span class="text__section">Максимальна цифра:</span>
+					<span class="text__maxDigit"></span>
+				</div>
+				<div class="radiobuttons">
+					<label>
+						<input type="radio" name="blockAlign" value="right"> Встановити вирівнювання контенту по правому краю
+					</label>
+					<label>
+						<input type="radio" name="blockAlign" value="left"> Встановити вирівнювання по лівому краю
+					</label>
+				</div>
+			</div>
+			<div class = "sixth section">
+			<img src="img/pikch/wiki.jfif" usemap="#wikimap" alt="wikipedia.org" class="pikcha">   
+				<img src="img/pikch/lichess.png" usemap="#lichessmap" alt="lichess.org" class="pikcha">
+				<img src="img/pikch/chesscom.png" usemap="#chesscommap" alt="chess.com" class="pikcha">
+				<map name="wikimap">
+					<area shape="rect" coords="0,0,50,50" href="https://uk.wikipedia.org/wiki/%D0%A8%D0%B0%D1%85%D0%B8" alt="Перейти на Вікіпедію">
+				</map>
+
+				<map name="lichessmap">
+					<area shape="rect" coords="0,0,50,50" href="https://lichess.org/" alt="Перейти на Lichess">
+				</map>
+
+				<map name="chesscommap">
+					<area shape="rect" coords="0,0,50,50" href="https://www.chess.com/" alt="Перейти на Chess.com">
+				</map>
+			</div>
+			<div class = "seventh section"><h1>Чемпіони та Їхня Спадщина</h1></div>
+		</div>
+
+	</body>
+	<script src="js/scripts.js"></script>
+</html>

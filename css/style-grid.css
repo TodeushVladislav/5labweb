@@ -1,0 +1,78 @@
+body{margin:0;
+font-family: Times New Roman, sans-serif;}
+h1{margin:0;}
+.container {
+  display: grid;
+  grid-template-areas:
+    "first first first"
+    "second third fourth"
+    "second fifth fourth"
+    "second fifth sixth"
+    "seventh seventh seventh";
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 4fr) minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr auto auto;
+  min-height: 100vh;
+
+}
+.section {
+	padding: 10px;
+	word-wrap: break-word;
+	hyphens: auto;
+}
+
+.first   { grid-area: first;  background:lightblue; }
+.second  { grid-area: second; background:PeachPuff; }
+.third   { grid-area: third; background:SpringGreen; }
+.fourth  { grid-area: fourth; background:PeachPuff; }
+.fifth   { grid-area: fifth; background:#fff; }
+.sixth   { grid-area: sixth; background:SpringGreen; }
+.seventh { grid-area: seventh; background:lightblue; }
+.button{
+	display: block;
+}
+.blocks{
+	margin-bottom: 20px;
+}
+label{
+    display: block;
+}
+.photo {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 13px;
+}
+.pikcha {
+  width: 25%;
+  max-width: 50px;
+  height: auto;
+  border-radius: 13px;
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-areas:
+            "first"
+            "second"
+            "third"
+            "fifth"
+            "fourth"
+            "sixth"
+            "seventh";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto; 
+        min-height: auto;
+    }
+	.fourth, .sixth, h1{
+    text-align: center;
+  }
+  .pikcha {
+    width: 20%;
+    max-width: 60px;
+    margin: 10px;
+  }
+   h1{
+    font-size: 1.5rem;
+  }
+}
