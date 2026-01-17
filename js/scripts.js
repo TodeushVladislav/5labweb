@@ -126,15 +126,17 @@ const storageKey = 'blocksAlign';
 
 window.addEventListener("load", function () {
     const savedAlign = localStorage.getItem(storageKey);
-	localStorage.clear();
-	localStorage.setItem(storageKey, savedAlign);
+	//localStorage.clear();
+	//localStorage.setItem(storageKey, savedAlign);
 
     if (savedAlign) {
         applyAlign(savedAlign);
-        // Відмічаємо відповідну радіокнопку
         const radio = form.querySelector(`input[value="${savedAlign}"]`);
         if (radio) {radio.checked = true;}
     }
+	document.querySelectorAll(".section").forEach((block, index) => {
+        localStorage.removeItem(`list_data_${index}`); 
+    });
 });
 
 form.addEventListener("mouseout", function () {
@@ -216,5 +218,6 @@ document.querySelectorAll(".section").forEach(block => {
 		createForm(block);
 	});
 });
+
 
 
